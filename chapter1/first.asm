@@ -23,10 +23,10 @@ _asm_main:
     call read_int
     mov [input1], eax
 
-    mov exa, prompt2
+    mov eax, prompt2
     call print_string
 
-    call read_input
+    call read_int
     mov [input2], eax
 
     mov eax, [input1]
