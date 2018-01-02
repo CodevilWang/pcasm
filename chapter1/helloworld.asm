@@ -1,18 +1,19 @@
+%define SYSCALL_WRITE 0x2000004
+%define SYSCALL_EXIT  0x2000001
 section .text  
-        global _start;  
-    _start:  
-        mov eax, 4  
-        mov ebx, 1  
-        mov ecx, string  
-        mov edx, length  
-        int 80h  
+        global start;  
+    start:  
+        mov rdi, 1 
+        mov rsi, string 
+        mov rdx, length 
+        mov rax, SYSCALL_WRITE
+        syscall
+
+        mov rax, SYSCALL_EXIT
+        mov rdi, 0
+        syscall
           
-        ;exit的系统调用  
-        mov eax, 1  
-        mov ebx, 0  
-        int 80h  
-          
-    section .data  
+    section .data
         string: db 'hello world',0Ah  
         length: equ 13  
           
